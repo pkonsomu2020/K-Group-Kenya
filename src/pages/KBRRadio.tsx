@@ -4,8 +4,9 @@ import KBRRadioLogo from "/COMPANY LOGOS/KBRRADIO.jpg";
 import heroImg from "/COMPANY LOGOS/KBRRADIO.jpg";
 import Banner from "@/components/Banner";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { Phone, Smartphone, Facebook, Instagram, Youtube, Mail } from "lucide-react";
+import { Phone, Smartphone, Facebook, Instagram, Youtube, Mail, Radio, Clock, Users } from "lucide-react";
 import BookingForm from "@/components/BookingForm";
+import MinimalRadioPlayer from "@/components/MinimalRadioPlayer";
 import {
   Carousel,
   CarouselContent,
@@ -40,6 +41,27 @@ const KBRRadio = () => (
       </div>
     </section>
 
+    {/* Live Stream Section */}
+    <section className="py-16 px-4 bg-gradient-to-br from-brand-red to-red-600">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Listen Live</h2>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto">
+            Tune in to KBR Radio 254 for the best in gospel music, inspirational shows, and community programming
+          </p>
+          <div className="mt-4 p-3 bg-white/10 rounded-lg max-w-md mx-auto">
+            <p className="text-sm text-white/80">
+              <strong>Note:</strong> Stream availability may vary. If the player doesn't work, the station might be offline or broadcasting on FM frequencies.
+            </p>
+          </div>
+        </div>
+        
+        <div className="flex justify-center items-center">
+          <MinimalRadioPlayer />
+        </div>
+      </div>
+    </section>
+
     {/* About Section */}
     <section className="py-16 px-4 bg-white">
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -67,6 +89,8 @@ const KBRRadio = () => (
         </div>
       </div>
     </section>
+
+
 
     {/* Gallery Section */}
     <section className="py-16 px-4 bg-brand-black">
