@@ -88,17 +88,17 @@ const EventsSection = () => {
         {/* Events List - New Format */}
         <div className="flex flex-col gap-8 mb-16">
           {upcomingEvents.map((event) => (
-            <div key={event.id} className="flex items-center gap-8 bg-white rounded-lg shadow p-6">
+            <div key={event.id} className="flex flex-col items-start gap-4 bg-card text-card-foreground rounded-lg shadow p-5 sm:flex-row sm:items-center sm:gap-8 sm:p-6">
               {/* Logo/Avatar Placeholder */}
               <div className="flex flex-col items-center justify-center min-w-[80px]">
                 <div className="text-5xl font-bold text-red-600 leading-none mb-1">{new Date(event.date).getDate()}</div>
                 <div className="text-lg text-red-600">{new Date(event.date).toLocaleString('default', { month: 'short' })}</div>
               </div>
-              <div className="flex-1">
+              <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-2xl font-bold text-foreground">{event.title}</span>
+                  <span className="text-xl font-bold text-foreground sm:text-2xl">{event.title}</span>
                 </div>
-                <div className="text-lg text-muted-foreground mt-1">{event.time} • {event.location}{event.city ? ` - ${event.city}` : ''}</div>
+                <div className="text-base text-muted-foreground mt-1 sm:text-lg">{event.time} • {event.location}{event.city ? ` - ${event.city}` : ''}</div>
               </div>
               <div>
                 <Button variant="outline" size="lg" onClick={() => setModalEvent(event)}>
@@ -110,11 +110,11 @@ const EventsSection = () => {
         </div>
         {/* Modal for Event Details */}
         {modalEvent && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-            <div className="bg-white rounded-lg shadow-lg max-w-4xl w-full flex flex-col md:flex-row relative max-h-[90vh]">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3">
+            <div className="bg-white text-black rounded-lg shadow-lg max-w-4xl w-full flex flex-col md:flex-row relative max-h-[90vh] overflow-y-auto">
               <button className="absolute top-4 right-4 text-2xl" onClick={() => setModalEvent(null)}>&times;</button>
-              <div className="flex-1 p-8 overflow-y-auto max-h-[90vh]">
-                <h2 className="text-3xl font-bold mb-2">{modalEvent.title}</h2>
+              <div className="flex-1 p-5 sm:p-8 md:overflow-y-auto md:max-h-[90vh]">
+                <h2 className="text-2xl sm:text-3xl font-bold mb-2 pr-8">{modalEvent.title}</h2>
                 <div className="text-lg text-muted-foreground mb-4">{modalEvent.location}{modalEvent.city ? `, ${modalEvent.city}` : ''}</div>
                 {/* Google Maps Embed */}
                 <iframe

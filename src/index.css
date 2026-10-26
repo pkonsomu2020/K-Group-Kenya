@@ -69,6 +69,9 @@ All colors MUST be HSL.
     --sidebar-border: 0 0% 20%;
     --sidebar-ring: 358 91% 48%;
   }
+  html, body {
+    overflow-x: clip;
+  }
   body {
     font-family: 'Inter', 'Open Sans', sans-serif;
     @apply bg-white text-brand-black;
