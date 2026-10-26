@@ -17,6 +17,7 @@ const subsidiaries = [
   { value: 'kbr-radio', label: 'KBR Radio' },
   { value: 'breakout-bible-fellowship', label: 'Breakout Bible Fellowship' },
   { value: 'kbr-academy', label: 'KBR Academy' },
+  { value: 'covnt', label: 'COVNT.' },
 ];
 
 export default function BookingForm({ companyEnquire }: { companyEnquire?: string }) {
@@ -67,7 +68,6 @@ export default function BookingForm({ companyEnquire }: { companyEnquire?: strin
             <FormField name="firstName" control={form.control} rules={{ required: 'First name is required' }}
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <div className="text-sm text-muted-foreground leading-tight mb-0.5">firstName</div>
                   <FormLabel className="mb-0">First Name *</FormLabel>
                   <FormControl>
                     <input type="text" className="w-full px-4 py-2 rounded border border-gray-300 text-black" placeholder="Enter your first name" {...field} />
@@ -79,7 +79,6 @@ export default function BookingForm({ companyEnquire }: { companyEnquire?: strin
             <FormField name="lastName" control={form.control} rules={{ required: 'Last name is required' }}
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <div className="text-sm text-muted-foreground leading-tight mb-0.5">lastName</div>
                   <FormLabel className="mb-0">Last Name *</FormLabel>
                   <FormControl>
                     <input type="text" className="w-full px-4 py-2 rounded border border-gray-300 text-black" placeholder="Enter your last name" {...field} />
@@ -93,7 +92,6 @@ export default function BookingForm({ companyEnquire }: { companyEnquire?: strin
             <FormField name="email" control={form.control} rules={{ required: 'Email is required' }}
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <div className="text-sm text-muted-foreground leading-tight mb-0.5">email</div>
                   <FormLabel className="mb-0">Email Address *</FormLabel>
                   <FormControl>
                     <input type="email" className="w-full px-4 py-2 rounded border border-gray-300 text-black" placeholder="your@email.com" {...field} />
@@ -105,7 +103,6 @@ export default function BookingForm({ companyEnquire }: { companyEnquire?: strin
             <FormField name="phone" control={form.control} rules={{ required: 'Phone number is required' }}
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <div className="text-sm text-muted-foreground leading-tight mb-0.5">phone</div>
                   <FormLabel className="mb-0">Phone Number *</FormLabel>
                   <FormControl>
                     <input type="tel" className="w-full px-4 py-2 rounded border border-gray-300 text-black" placeholder="+254 700 000 000" {...field} />
@@ -118,7 +115,6 @@ export default function BookingForm({ companyEnquire }: { companyEnquire?: strin
           <FormField name="companyEnquire" control={form.control} rules={{ required: 'Please select a company' }}
             render={({ field }) => (
               <FormItem className="space-y-1">
-                <div className="text-sm text-muted-foreground leading-tight mb-0.5">companyEnquire</div>
                 <FormLabel className="mb-0">Company Enquire *</FormLabel>
                 <FormControl>
                   {companyEnquire ? (
@@ -139,7 +135,6 @@ export default function BookingForm({ companyEnquire }: { companyEnquire?: strin
           <FormField name="additionalDetails" control={form.control}
             render={({ field }) => (
               <FormItem className="space-y-1">
-                <div className="text-sm text-muted-foreground leading-tight mb-0.5">additionalDetails</div>
                 <FormLabel className="mb-0">Additional Details</FormLabel>
                 <FormControl>
                   <textarea className="w-full px-4 py-2 rounded border border-gray-300 text-black" rows={4} placeholder="Tell us more about your event, special requirements, music preferences, etc." {...field} />

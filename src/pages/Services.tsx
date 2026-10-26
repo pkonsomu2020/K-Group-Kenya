@@ -80,6 +80,7 @@ const Services = () => {
       <ThemeProvider>
         <Navigation />
       </ThemeProvider>
+      <Banner title="Our Services" subtitle="Professional sound, lights, DJ, MC, stage and LED screen solutions for every occasion." eyebrow="What we do" crumb="Services" />
       <div className="pt-0">
         {/* Services Grid */}
         <section className="py-20">

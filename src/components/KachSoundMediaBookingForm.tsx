@@ -78,7 +78,6 @@ export default function KachSoundMediaBookingForm() {
             <FormField name="firstName" control={form.control} rules={{ required: 'First name is required' }}
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <div className="text-sm text-muted-foreground leading-tight mb-0.5">firstName</div>
                   <FormLabel className="mb-0">First Name *</FormLabel>
                   <FormControl>
                     <input type="text" className="w-full px-4 py-2 rounded border border-gray-300 text-black" placeholder="Enter your first name" {...field} />
@@ -90,7 +89,6 @@ export default function KachSoundMediaBookingForm() {
             <FormField name="lastName" control={form.control} rules={{ required: 'Last name is required' }}
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <div className="text-sm text-muted-foreground leading-tight mb-0.5">lastName</div>
                   <FormLabel className="mb-0">Last Name *</FormLabel>
                   <FormControl>
                     <input type="text" className="w-full px-4 py-2 rounded border border-gray-300 text-black" placeholder="Enter your last name" {...field} />
@@ -104,7 +102,6 @@ export default function KachSoundMediaBookingForm() {
             <FormField name="email" control={form.control} rules={{ required: 'Email is required' }}
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <div className="text-sm text-muted-foreground leading-tight mb-0.5">email</div>
                   <FormLabel className="mb-0">Email Address *</FormLabel>
                   <FormControl>
                     <input type="email" className="w-full px-4 py-2 rounded border border-gray-300 text-black" placeholder="your@email.com" {...field} />
@@ -116,7 +113,6 @@ export default function KachSoundMediaBookingForm() {
             <FormField name="phone" control={form.control} rules={{ required: 'Phone number is required' }}
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <div className="text-sm text-muted-foreground leading-tight mb-0.5">phone</div>
                   <FormLabel className="mb-0">Phone Number *</FormLabel>
                   <FormControl>
                     <input type="tel" className="w-full px-4 py-2 rounded border border-gray-300 text-black" placeholder="+254 700 000 000" {...field} />
@@ -130,7 +126,6 @@ export default function KachSoundMediaBookingForm() {
             <FormField name="eventType" control={form.control} rules={{ required: 'Event type is required' }}
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <div className="text-sm text-muted-foreground leading-tight mb-0.5">eventType</div>
                   <FormLabel className="mb-0">Event Type *</FormLabel>
                   <FormControl>
                     <select className="w-full px-4 py-2 rounded border border-gray-300 text-black" {...field}>
@@ -147,7 +142,6 @@ export default function KachSoundMediaBookingForm() {
             <FormField name="eventDate" control={form.control} rules={{ required: 'Event date is required' }}
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <div className="text-sm text-muted-foreground leading-tight mb-0.5">eventDate</div>
                   <FormLabel className="mb-0">Event Date *</FormLabel>
                   <FormControl>
                     <input type="date" className="w-full px-4 py-2 rounded border border-gray-300 text-black" {...field} />
@@ -161,7 +155,6 @@ export default function KachSoundMediaBookingForm() {
             <FormField name="venue" control={form.control} rules={{ required: 'Venue is required' }}
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <div className="text-sm text-muted-foreground leading-tight mb-0.5">venue</div>
                   <FormLabel className="mb-0">Venue/Location *</FormLabel>
                   <FormControl>
                     <input type="text" className="w-full px-4 py-2 rounded border border-gray-300 text-black" placeholder="Event venue or location" {...field} />
@@ -173,7 +166,6 @@ export default function KachSoundMediaBookingForm() {
             <FormField name="guests" control={form.control}
               render={({ field }) => (
                 <FormItem className="space-y-1">
-                  <div className="text-sm text-muted-foreground leading-tight mb-0.5">guests</div>
                   <FormLabel className="mb-0">Expected Guests</FormLabel>
                   <FormControl>
                     <input type="number" className="w-full px-4 py-2 rounded border border-gray-300 text-black" placeholder="Number of guests" {...field} />
@@ -186,7 +178,6 @@ export default function KachSoundMediaBookingForm() {
           <FormField name="budget" control={form.control}
             render={({ field }) => (
               <FormItem className="space-y-1">
-                <div className="text-sm text-muted-foreground leading-tight mb-0.5">budget</div>
                 <FormLabel className="mb-0">Budget Range</FormLabel>
                 <FormControl>
                   <select className="w-full px-4 py-2 rounded border border-gray-300 text-black" {...field}>
@@ -203,7 +194,6 @@ export default function KachSoundMediaBookingForm() {
           <FormField name="message" control={form.control}
             render={({ field }) => (
               <FormItem className="space-y-1">
-                <div className="text-sm text-muted-foreground leading-tight mb-0.5">message</div>
                 <FormLabel className="mb-0">Additional Details</FormLabel>
                 <FormControl>
                   <textarea className="w-full px-4 py-2 rounded border border-gray-300 text-black" rows={4} placeholder="Tell us more about your event, special requirements, music preferences, etc." {...field} />

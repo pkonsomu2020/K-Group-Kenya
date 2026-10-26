@@ -10,6 +10,7 @@ const Events = () => {
       <ThemeProvider>
         <Navigation />
       </ThemeProvider>
+      <Banner title="Upcoming Events" subtitle="Join us at these events and experience live worship, music and community." eyebrow="What's on" crumb="Events" />
       <div className="pt-0">
         <EventsSection />
       </div>

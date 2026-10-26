@@ -74,12 +74,6 @@ const EventsSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Upcoming <span className="text-divine">Events</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Join me at these upcoming events and experience the power of gospel music in live worship settings.
-          </p>
           {/* Event Types Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
             {eventTypes.map((type, index) => (

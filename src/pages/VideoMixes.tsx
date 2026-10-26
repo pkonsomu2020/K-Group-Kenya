@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import Banner from "@/components/Banner";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
-const API_URL = "http://localhost:4000";
+const API_URL = import.meta.env.VITE_API_BASE || "http://localhost:4000";
 
 const VideoMixes = () => {
   const [mixes, setMixes] = useState<any[]>([])
@@ -26,8 +26,15 @@ const VideoMixes = () => {
   }, [])
 
   const fetchMixes = async () => {
-    const res = await fetch(`${API_URL}/api/mixes`)
-    const data = await res.json()
+    let data: any[] = []
+    try {
+      const res = await fetch(`${API_URL}/api/mixes`)
+      if (!res.ok) throw new Error("Request failed")
+      data = await res.json()
+    } catch {
+      // Server unreachable: show the empty state instead of crashing the page
+      return
+    }
     const videoMixes = data.filter((mix: any) => mix.type === "video")
     setMixes(videoMixes)
     if (videoMixes.length > 0 && !selectedYear) setSelectedYear(videoMixes[0].date?.slice(0, 4))
@@ -106,11 +113,11 @@ const VideoMixes = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background pt-16">
+    <div className="min-h-screen bg-background">
       <ThemeProvider>
         <Navigation />
       </ThemeProvider>
-      <Banner title="Video Mixes" subtitle="Watch inspiring gospel video mixes and live DJ sets." />
+      <Banner title="Video Mixes" subtitle="Watch inspiring gospel video mixes and live DJ sets." eyebrow="Watch" crumb="Video Mixes" />
       <div className="pt-0">
         {/* Year Filter Tabs */}
         <section className="py-4 border-b">

@@ -93,3 +93,14 @@ All colors MUST be HSL.
     @apply border-2 border-brand-red text-brand-red bg-white font-bold rounded-lg px-6 py-3 hover:bg-brand-red hover:text-white transition;
   }
 }
+/* Company pages */
+@keyframes kg-scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes kg-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.kg-scroll { animation: kg-scroll-left var(--kg-speed, 40s) linear infinite; }
+.kg-scroll-reverse { animation-direction: reverse; }
+.kg-pause:hover .kg-scroll, .kg-pause:focus-within .kg-scroll { animation-play-state: paused; }
+.kg-float { animation: kg-float 5s ease-in-out infinite; }
+.kg-float-slow { animation: kg-float 7s ease-in-out infinite reverse; }
+@media (prefers-reduced-motion: reduce) {
+  .kg-scroll, .kg-float, .kg-float-slow { animation: none; }
+}

@@ -1,90 +1,191 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { ArrowUpRight, HeartHandshake, Church, Users, Compass } from "lucide-react";
+import Banner from "@/components/Banner";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
-const csrLogos = [
-  "/COMPANY LOGOS/K-GROUP KENYA CSR - BLACK BG.jpg",
-  "/COMPANY LOGOS/K-GROUP KENYA CSR - WHITE BG.jpg"
+const focusAreas = [
+  { icon: HeartHandshake, title: "Children's Home Visits", text: "Regular visits with essential supplies, time and care for children in need." },
+  { icon: Church, title: "Missionary Outreach", text: "Christian missionary outreach that shares hope and faith in action." },
+  { icon: Users, title: "Community Empowerment", text: "Projects that build dignity and opportunity for local communities." },
+  { icon: Compass, title: "Mentorship & Guidance", text: "Mentorship and spiritual guidance for young people." },
 ];
 
-const galleryImages = [
-  ...[...Array(6)].map((_, i) => `/CSR PAGE/miale home ${i + 1}.jpg`),
-  ...[...Array(27)].map((_, i) => `/CSR PAGE/nyumba ya tumaini ${i + 1}.jpg`)
+type Project = "All" | "Miale Home" | "Nyumba ya Tumaini";
+
+const photos = [
+  ...[...Array(6)].map((_, i) => ({ src: `/CSR PAGE/miale home ${i + 1}.jpg`, project: "Miale Home" as const })),
+  ...[...Array(27)].map((_, i) => ({ src: `/CSR PAGE/nyumba ya tumaini ${i + 1}.jpg`, project: "Nyumba ya Tumaini" as const })),
 ];
 
-const CSR = () => (
-  <div className="min-h-screen bg-background pt-16">
-    <ThemeProvider>
-      <Navigation />
-    </ThemeProvider>
-    {/* Hero Section */}
-    <section className="relative flex flex-col items-center justify-center text-center px-4 pt-24 pb-12 bg-brand-black overflow-hidden">
-      {/* Background image with overlay */}
-      <img src="/CSR PAGE/miale home 1.jpg" alt="CSR Background" className="absolute inset-0 w-full h-full object-cover opacity-30 z-0" />
-      <div className="absolute inset-0 bg-black/40 z-0" />
-      <div className="relative z-20 flex flex-col items-center w-full">
-        {/* Logo in circle with red border */}
-        <div className="relative w-40 h-40 rounded-full bg-white flex items-center justify-center shadow-lg border-4 border-brand-red mt-0 mb-4 overflow-hidden">
-          <img src={csrLogos[0]} alt="CSR Logo" className="object-contain w-full h-full" />
-        </div>
-        <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-2 drop-shadow-lg">CSR & Missions</h1>
-        <span className="text-brand-red font-bold text-2xl mb-4 block">Compassion in Action. Faith in Motion.</span>
-        <p className="text-xl md:text-2xl text-white max-w-3xl mx-auto mb-0 leading-relaxed">
-          K-GROUP KENYA is committed to making a difference through Corporate Social Responsibility (CSR) and Christian Missions.
-        </p>
-      </div>
-    </section>
-    {/* About CSR & Missions */}
-    <section className="py-16 px-4 bg-white">
-      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 className="text-3xl font-bold uppercase mb-4 text-brand-red">Our Mission</h2>
-          <p className="text-brand-black mb-4 text-lg">
-            We believe in giving back to society and living out our faith through action. Our CSR and Missions initiatives include regular visits to children’s homes, providing essential supplies, mentorship, and spiritual support. We partner with local organizations to maximize impact and foster hope, dignity, and transformation.
-          </p>
-          <ul className="list-disc list-inside text-brand-black mb-4">
-            <li>Children’s Home Visits & Support</li>
-            <li>Christian Missionary Outreach</li>
-            <li>Community Empowerment Projects</li>
-            <li>Mentorship & Spiritual Guidance</li>
-          </ul>
-        </div>
-        <div className="flex flex-col gap-4 items-center">
-          <img src={csrLogos[0]} alt="CSR Logo Black" className="rounded-xl shadow-lg object-contain w-48 h-48 bg-white p-4" />
-        </div>
-      </div>
-    </section>
-    {/* Gallery Section */}
-    <section className="py-16 px-4 bg-brand-black">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="brand-section-title text-white">Gallery</h2>
-        <div className="mt-8 relative">
-          <Carousel
-            opts={{ loop: true }}
-            plugins={[Autoplay({ delay: 2500, stopOnInteraction: false })]}
-            className="w-full"
-          >
-            <CarouselContent>
-              {galleryImages.map((img, idx) => (
-                <CarouselItem key={idx} className="flex items-center justify-center">
-                  <img
-                    src={img}
-                    alt={`CSR Gallery ${idx + 1}`}
-                    className="rounded-xl shadow-lg object-contain max-h-[500px] mx-auto"
-                  />
-                </CarouselItem>
+const projects: Project[] = ["All", "Miale Home", "Nyumba ya Tumaini"];
+const INITIAL = 12;
+
+const CSR = () => {
+  const [project, setProject] = useState<Project>("All");
+  const [showAll, setShowAll] = useState(false);
+  const [open, setOpen] = useState<string | null>(null);
+
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    AOS.init({ once: true, duration: 700, offset: 60, disable: reduce });
+  }, []);
+
+  const filtered = photos.filter((p) => project === "All" || p.project === project);
+  const visible = showAll ? filtered : filtered.slice(0, INITIAL);
+
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <ThemeProvider>
+        <Navigation />
+      </ThemeProvider>
+      <Banner
+        title="CSR & Missions"
+        subtitle="Compassion in Action. Faith in Motion."
+        eyebrow="Giving back"
+        image="/CSR PAGE/miale home 1.jpg"
+        crumb="CSR"
+      />
+
+      <main>
+        {/* Intro */}
+        <section className="px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
+            <div data-aos="fade-right">
+              <span className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-brand-red">
+                <span className="h-px w-8 bg-brand-red" /> Our mission
+              </span>
+              <h2 className="mt-3 text-3xl font-bold leading-tight md:text-4xl">Living out our faith through action.</h2>
+              <p className="mt-5 leading-relaxed text-muted-foreground">
+                We believe in giving back to society. Our CSR and Missions work includes regular visits to children's homes, providing essential supplies, mentorship and spiritual support. We partner with local organisations to maximise impact and foster hope, dignity and transformation.
+              </p>
+            </div>
+            <div className="relative" data-aos="fade-left">
+              <img
+                src="/CSR PAGE/nyumba ya tumaini 1.jpg"
+                alt="K-GROUP KENYA team with children during an outreach visit"
+                loading="lazy"
+                className="h-80 w-full rounded-3xl object-cover"
+              />
+              <img
+                src="/COMPANY LOGOS/K-GROUP KENYA CSR - WHITE BG.jpg"
+                alt="K-GROUP KENYA CSR logo"
+                className="absolute -bottom-6 -left-2 h-24 w-24 rounded-2xl border-4 border-brand-red bg-white object-contain p-1 shadow-xl sm:left-6"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Focus areas */}
+        <section className="bg-brand-black px-4 py-20 text-white sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <span className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-brand-red">
+              <span className="h-px w-8 bg-brand-red" /> What we do
+            </span>
+            <h2 className="mt-3 text-3xl font-bold md:text-4xl">Where we focus</h2>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {focusAreas.map((f, i) => (
+                <div key={f.title} className="rounded-2xl border border-white/10 bg-white/5 p-6" data-aos="fade-up" data-aos-delay={i * 80}>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-red">
+                    <f.icon className="h-6 w-6" aria-hidden="true" />
+                  </span>
+                  <h3 className="mt-4 text-lg font-bold">{f.title}</h3>
+                  <p className="mt-2 text-sm text-white/70">{f.text}</p>
+                </div>
               ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-2 top-1/2 -translate-y-1/2 z-20" />
-            <CarouselNext className="right-2 top-1/2 -translate-y-1/2 z-20" />
-          </Carousel>
-        </div>
-      </div>
-    </section>
-    <Footer />
-  </div>
-);
+            </div>
+          </div>
+        </section>
 
-export default CSR; 
+        {/* Gallery */}
+        <section className="px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <div>
+                <span className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-brand-red">
+                  <span className="h-px w-8 bg-brand-red" /> In pictures
+                </span>
+                <h2 className="mt-3 text-3xl font-bold md:text-4xl">Moments from our outreach</h2>
+              </div>
+              <div className="flex flex-wrap gap-2" role="group" aria-label="Filter photos by project">
+                {projects.map((p) => (
+                  <button
+                    key={p}
+                    type="button"
+                    onClick={() => { setProject(p); setShowAll(false); }}
+                    aria-pressed={project === p}
+                    className={`rounded-full border-2 px-4 py-1.5 text-sm font-semibold transition-colors ${
+                      project === p
+                        ? "border-foreground bg-foreground text-background"
+                        : "border-border hover:border-brand-red hover:text-brand-red"
+                    }`}
+                  >
+                    {p}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-10 columns-2 gap-4 md:columns-3 lg:columns-4">
+              {visible.map((p) => (
+                <button
+                  key={p.src}
+                  type="button"
+                  onClick={() => setOpen(p.src)}
+                  className="group mb-4 block w-full overflow-hidden rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-red"
+                  aria-label={`Open photo from ${p.project}`}
+                >
+                  <img
+                    src={p.src}
+                    alt={`Outreach at ${p.project}`}
+                    loading="lazy"
+                    className="w-full transition-transform duration-300 group-hover:scale-105"
+                  />
+                </button>
+              ))}
+            </div>
+
+            {!showAll && filtered.length > INITIAL && (
+              <div className="mt-4 text-center">
+                <button
+                  type="button"
+                  onClick={() => setShowAll(true)}
+                  className="rounded-lg border-2 border-foreground px-6 py-2.5 font-bold transition-colors hover:bg-foreground hover:text-background"
+                >
+                  Show all {filtered.length} photos
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="bg-brand-red px-4 py-16 text-center text-white sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold md:text-4xl">Partner with us</h2>
+          <p className="mx-auto mt-3 max-w-xl text-white/90">
+            Want to give, volunteer or join an outreach? Get in touch and we'll show you how to be part of it.
+          </p>
+          <Link to="/contacts" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-bold text-brand-black transition-colors hover:bg-brand-black hover:text-white">
+            Contact us <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </section>
+      </main>
+
+      <Dialog open={open !== null} onOpenChange={(o) => !o && setOpen(null)}>
+        <DialogContent className="max-w-4xl border-0 bg-transparent p-0 shadow-none">
+          <DialogTitle className="sr-only">Outreach photo</DialogTitle>
+          {open && <img src={open} alt="Outreach photo, enlarged" className="max-h-[85vh] w-full rounded-2xl object-contain" />}
+        </DialogContent>
+      </Dialog>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default CSR;

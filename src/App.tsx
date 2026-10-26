@@ -26,6 +26,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import About from "./pages/About";
 import Team from "./pages/Team";
 import CSR from "./pages/CSR";
+import COVNT from "./pages/COVNT";
 
 const queryClient = new QueryClient();
 
@@ -76,6 +77,7 @@ const App = () => {
               <Route path="/booking-terms" element={<BookingTerms />} />
               <Route path="/team" element={<Team />} />
               <Route path="/csr" element={<CSR />} />
+              <Route path="/covnt" element={<COVNT />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
