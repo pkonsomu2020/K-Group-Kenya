@@ -1,11 +1,11 @@
-import Navigation from "@/components/Navigation"
-import Footer from "@/components/Footer"
-import Home from "./Home"
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import Home from "./Home";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="corp min-h-screen bg-background">
       <ThemeProvider>
         <Navigation />
       </ThemeProvider>

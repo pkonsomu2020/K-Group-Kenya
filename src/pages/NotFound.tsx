@@ -17,7 +17,7 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="corp min-h-screen bg-background">
       <ThemeProvider>
         <Navigation />
       </ThemeProvider>

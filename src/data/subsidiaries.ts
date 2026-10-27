@@ -93,6 +93,16 @@ export const subsidiaries: Subsidiary[] = [
     sector: "Education & Skills Training",
   },
   {
+    name: "DJ KACH Ministries",
+    slug: "dj-kach-ministries",
+    tagline: "The Gospel Sound Ambassador.",
+    overview: "Gospel DJ, music minister and event specialist, bringing the joy of gospel music to every celebration.",
+    link: "/dj-kach-ministries",
+    logo: "/dj-kach/logo-white.png",
+    image: "/dj-kach/slides/1.jpg",
+    sector: "Christian Ministry & Gospel Engagement",
+  },
+  {
     name: "COVNT.",
     slug: "covnt",
     tagline: "Wear Your Purpose.",

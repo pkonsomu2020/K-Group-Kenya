@@ -107,3 +107,104 @@ All colors MUST be HSL.
 @media (prefers-reduced-motion: reduce) {
   .kg-scroll, .kg-float, .kg-float-slow { animation: none; }
 }
+
+
+/* K Group Kenya corporate site (group pages only; company sites keep their own look) */
+@layer base {
+  .corp {
+    --background: 218 33% 98%;
+    --foreground: 215 69% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 69% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 69% 14%;
+    --primary: 215 69% 14%;
+    --primary-foreground: 218 33% 98%;
+    --secondary: 46 65% 52%;
+    --secondary-foreground: 215 69% 14%;
+    --muted: 216 33% 95%;
+    --muted-foreground: 215 16% 38%;
+    --accent: 46 65% 52%;
+    --accent-foreground: 215 69% 14%;
+    --border: 216 25% 87%;
+    --input: 216 25% 87%;
+    --ring: 46 65% 52%;
+    color-scheme: light;
+    font-family: 'Open Sans', system-ui, sans-serif;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+  .corp h1, .corp h2, .corp h3, .corp h4, .corp .font-heading {
+    font-family: 'Montserrat', 'Open Sans', sans-serif;
+  }
+}
+
+/* COVNT. page: the original cream, black and gold design */
+.covnt {
+  --cv-black: #171715;
+  --cv-soft: #242320;
+  --cv-pearl: #f8f7f3;
+  --cv-cream: #eee8dc;
+  --cv-gold: #b99a62;
+  --cv-gold-light: #d8c39a;
+  --cv-muted: #706d65;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: var(--cv-pearl);
+  color: var(--cv-black);
+  color-scheme: light;
+}
+.covnt .cv-serif { font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -0.03em; }
+.cv-reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+.cv-reveal.cv-in { opacity: 1; transform: none; }
+@keyframes cv-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.cv-ticker { animation: cv-ticker 40s linear infinite; }
+@keyframes cv-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+.cv-bob { animation: cv-bob 2.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .cv-reveal { opacity: 1; transform: none; transition: none; }
+  .cv-ticker, .cv-bob { animation: none; }
+}
+
+/* DJ KACH Ministries page: white and red, as on the original DJ Kach site */
+.djk {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 7%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 38%;
+  --border: 0 0% 90%;
+  font-family: "Inter", "Open Sans", system-ui, sans-serif;
+  background: #fff;
+  color: #111;
+  color-scheme: light;
+}
+.djk h1, .djk h2, .djk h3, .djk .font-heading { font-family: "Montserrat", "Inter", sans-serif; }
+@keyframes djk-ken { from { transform: scale(1.02); } to { transform: scale(1.14); } }
+.djk-ken { animation: djk-ken 9s ease-out forwards; }
+@keyframes djk-eq { 0%, 100% { transform: scaleY(.15); } 50% { transform: scaleY(1); } }
+.djk-eq { animation: djk-eq 1.1s ease-in-out infinite; transform-origin: bottom; }
+@keyframes djk-rise { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 15% { opacity: .55; } 100% { transform: translateY(-110vh) rotate(25deg); opacity: 0; } }
+.djk-rise { animation: djk-rise 14s linear infinite; }
+@keyframes djk-confetti { 0% { transform: translate(0, 0) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); opacity: 0; } }
+.djk-confetti { animation: djk-confetti 1.6s ease-out forwards; }
+@keyframes djk-blink { 50% { opacity: 0; } }
+.djk-caret { animation: djk-blink 1s steps(1) infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .djk-ken, .djk-eq, .djk-rise, .djk-confetti, .djk-caret { animation: none; }
+}
+
+/* Group site buttons: simple pills, no icons */
+.corp-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 9999px; padding: 0.9rem 2rem; font-size: 1rem; font-weight: 700; line-height: 1.2;
+  border: 1px solid transparent; cursor: pointer;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+}
+.corp-btn:active { transform: translateY(1px); }
+.corp-btn-gold { background: #D4AF37; color: #0B1F3B; }
+.corp-btn-gold:hover { background: #E2C25A; }
+.corp-btn-outline { border-color: rgba(255,255,255,.7); color: #fff; }
+.corp-btn-outline:hover { background: rgba(255,255,255,.12); border-color: #fff; }
+.corp-btn-navy { background: #0B1F3B; color: #fff; }
+.corp-btn-navy:hover { background: #13294B; }
+.corp-btn-sm { padding: 0.6rem 1.4rem; font-size: 0.9rem; }
+.corp-btn:disabled { opacity: .6; cursor: not-allowed; }

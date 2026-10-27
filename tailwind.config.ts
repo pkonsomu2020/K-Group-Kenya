@@ -69,6 +69,11 @@ export default {
 				'brand-black': {
 					DEFAULT: '#0d0c0c',
 				},
+					navy: { DEFAULT: '#0B1F3B', soft: '#13294B' },
+					gold: { DEFAULT: '#D4AF37', deep: '#B8932A' },
+					ivory: '#F8F9FB',
+					forest: '#0E5A3C',
+					charcoal: '#1C1C1C',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -131,6 +136,8 @@ export default {
 			},
 			fontFamily: {
 				sans: ['Inter', 'Open Sans', 'sans-serif'],
+				montserrat: ['Montserrat', 'sans-serif'],
+				opensans: ['Open Sans', 'sans-serif'],
 			}
 		}
 	},

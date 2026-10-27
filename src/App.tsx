@@ -1,34 +1,47 @@
+import { Suspense, lazy, useState, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
-import Events from "./pages/Events";
-import Services from "./pages/Services";
-import AudioMixes from "./pages/AudioMixes";
-import VideoMixes from "./pages/VideoMixes";
-import Gallery from "./pages/Gallery";
-import Contacts from "./pages/Contacts";
-import NotFound from "./pages/NotFound";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfService from "./pages/TermsOfService";
-import BookingTerms from "./pages/BookingTerms";
-import { useState, useEffect } from "react";
-import KachSoundMedia from "./pages/KachSoundMedia";
-import LinksAutoMotors from "./pages/LinksAutoMotors";
-import BreakoutEvents from "./pages/BreakoutEvents";
-import KBRRadio from "./pages/KBRRadio";
-import KBRAcademy from "./pages/KBRAcademy";
-import KBRTV from "./pages/KBRTV";
-import BreakoutBibleFellowship from "./pages/BreakoutBibleFellowship";
+const Events = lazy(() => import("./pages/Events"));
+const Services = lazy(() => import("./pages/Services"));
+const AudioMixes = lazy(() => import("./pages/AudioMixes"));
+const VideoMixes = lazy(() => import("./pages/VideoMixes"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const Contacts = lazy(() => import("./pages/Contacts"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const BookingTerms = lazy(() => import("./pages/BookingTerms"));
+const KachSoundMedia = lazy(() => import("./pages/KachSoundMedia"));
+const LinksAutoMotors = lazy(() => import("./pages/LinksAutoMotors"));
+const BreakoutEvents = lazy(() => import("./pages/BreakoutEvents"));
+const KBRRadio = lazy(() => import("./pages/KBRRadio"));
+const KBRAcademy = lazy(() => import("./pages/KBRAcademy"));
+const KBRTV = lazy(() => import("./pages/KBRTV"));
+const BreakoutBibleFellowship = lazy(() => import("./pages/BreakoutBibleFellowship"));
 import { ThemeProvider } from "@/components/ThemeProvider";
-import About from "./pages/About";
-import Team from "./pages/Team";
-import CSR from "./pages/CSR";
-import COVNT from "./pages/COVNT";
+import { KMark } from "@/components/corp/Logo";
+const About = lazy(() => import("./pages/About"));
+const Team = lazy(() => import("./pages/Team"));
+const CSR = lazy(() => import("./pages/CSR"));
+const COVNT = lazy(() => import("./pages/COVNT"));
+const DJKachMinistries = lazy(() => import("./pages/DJKachMinistries"));
 
 const queryClient = new QueryClient();
+
+// Scroll to the #anchor of a link (for example /#portfolio) once the page has rendered.
+const ScrollToHash = () => {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) return;
+    const t = window.setTimeout(() => document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" }), 120);
+    return () => window.clearTimeout(t);
+  }, [pathname, hash]);
+  return null;
+};
 
 const WHATSAPP_NUMBER = "254768550331"; // Updated WhatsApp number
 const WHATSAPP_MESSAGE = encodeURIComponent("Hello K-GROUP KENYA! I found your website and would like to connect.");
@@ -42,12 +55,10 @@ const App = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {loading && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-background/90">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0B1F3B]">
           <div className="flex flex-col items-center">
-            <div className="animate-spin rounded-full h-20 w-20 border-t-4 border-b-4 border-primary flex items-center justify-center">
-              <span className="text-4xl">🎧</span>
-            </div>
-            <div className="mt-4 text-lg font-bold text-secondary animate-pulse">Loading K-GROUP KENYA...</div>
+            <KMark className="h-20 w-20 animate-pulse" arc="#F8F9FB" />
+            <div className="mt-4 text-sm font-semibold uppercase tracking-[0.3em] text-white/80">K Group Kenya</div>
           </div>
         </div>
       )}
@@ -56,6 +67,8 @@ const App = () => {
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToHash />
+            <Suspense fallback={<div className="min-h-screen bg-[#0B1F3B]" aria-hidden="true" />}>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
@@ -78,9 +91,11 @@ const App = () => {
               <Route path="/team" element={<Team />} />
               <Route path="/csr" element={<CSR />} />
               <Route path="/covnt" element={<COVNT />} />
+              <Route path="/dj-kach-ministries" element={<DJKachMinistries />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            </Suspense>
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>

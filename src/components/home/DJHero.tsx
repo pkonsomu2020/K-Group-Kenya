@@ -40,11 +40,13 @@ const STAB_B: Record<number, number> = { 2: N.E4, 5: N.G4, 9: N.A4, 13: N.G4 };
 /** A platter you can grab and scrub, like vinyl. */
 const Platter = ({
   label,
+  logo,
   spinning,
   onGrab,
   onScratch,
 }: {
   label: string;
+  logo: string;
   spinning: boolean;
   onGrab: (grabbed: boolean) => void;
   onScratch: (speed: number) => void;
@@ -100,7 +102,7 @@ const Platter = ({
         >
           <div className="absolute left-1/2 top-[6%] h-[10%] w-[3px] -translate-x-1/2 rounded bg-white/50" />
           <img
-            src="/COMPANY LOGOS/K-GROUP.jpg"
+            src={logo}
             alt=""
             draggable={false}
             className="absolute inset-[30%] h-[40%] w-[40%] rounded-full border-2 border-brand-red bg-white object-contain"
@@ -117,7 +119,7 @@ const Platter = ({
  * crossfader. Drag a platter to scratch. All sound is synthesised with the
  * Web Audio API and only starts after a click or tap.
  */
-const DJHero = () => {
+const DJHero = ({ logo = "/COMPANY LOGOS/K-GROUP.jpg", title = "K·GROUP DECK" }: { logo?: string; title?: string }) => {
   const sceneRef = useRef<HTMLDivElement>(null);
   const ctxRef = useRef<AudioContext | null>(null);
   const masterRef = useRef<GainNode | null>(null);
@@ -494,7 +496,7 @@ const DJHero = () => {
           <div className="relative rounded-3xl bg-gradient-to-b from-[#2a2a2a] to-[#0f0f0f] p-4 shadow-[0_30px_50px_-15px_rgba(0,0,0,.55)] ring-1 ring-white/10">
             <div className="mb-3 flex items-center justify-between px-1">
               <span className="text-[10px] font-extrabold tracking-[0.25em] text-white/80">
-                K<span className="text-brand-red">·</span>GROUP DECK
+                {title}
               </span>
               <span
                 className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider transition-colors ${
@@ -508,7 +510,7 @@ const DJHero = () => {
 
             <div className="grid grid-cols-[1fr_.5fr_1fr] items-start gap-3">
               <div>
-                <Platter label="Deck A" spinning={playing[0]} onGrab={(g) => onGrab(0, g)} onScratch={onScratch} />
+                <Platter logo={logo} label="Deck A" spinning={playing[0]} onGrab={(g) => onGrab(0, g)} onScratch={onScratch} />
                 {deckControls(0)}
               </div>
 
@@ -545,7 +547,7 @@ const DJHero = () => {
               </div>
 
               <div>
-                <Platter label="Deck B" spinning={playing[1]} onGrab={(g) => onGrab(1, g)} onScratch={onScratch} />
+                <Platter logo={logo} label="Deck B" spinning={playing[1]} onGrab={(g) => onGrab(1, g)} onScratch={onScratch} />
                 {deckControls(1)}
               </div>
             </div>

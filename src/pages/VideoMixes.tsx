@@ -26,7 +26,7 @@ const VideoMixes = () => {
   }, [])
 
   const fetchMixes = async () => {
-    let data: any[] = []
+    let data: { type: string; date?: string }[] = []
     try {
       const res = await fetch(`${API_URL}/api/mixes`)
       if (!res.ok) throw new Error("Request failed")
@@ -113,7 +113,7 @@ const VideoMixes = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="corp min-h-screen bg-background">
       <ThemeProvider>
         <Navigation />
       </ThemeProvider>

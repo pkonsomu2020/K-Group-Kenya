@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 
 const Events = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="corp min-h-screen bg-background">
       <ThemeProvider>
         <Navigation />
       </ThemeProvider>

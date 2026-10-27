@@ -55,7 +55,7 @@ const CompanyPage = ({ config: c, extra, form }: Props) => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <ThemeProvider>
-        <Navigation />
+        <Navigation variant="company" />
       </ThemeProvider>
 
       {/* HERO */}
@@ -328,7 +328,7 @@ const CompanyPage = ({ config: c, extra, form }: Props) => {
         </DialogContent>
       </Dialog>
 
-      <Footer />
+      <Footer variant="company" />
     </div>
   );
 };

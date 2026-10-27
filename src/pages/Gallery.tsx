@@ -142,7 +142,7 @@ const Gallery = () => {
   )
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="corp min-h-screen bg-background">
       <Banner title="Gallery" subtitle="Explore event photos, behind-the-scenes moments, and more from K-GROUP KENYA." />
       <ThemeProvider>
         <Navigation />

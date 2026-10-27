@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { ArrowUpRight, HeartHandshake, Church, Users, Compass } from "lucide-react";
+import { HeartHandshake, Church, Users, Compass } from "lucide-react";
 import Banner from "@/components/Banner";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -40,7 +40,7 @@ const CSR = () => {
   const visible = showAll ? filtered : filtered.slice(0, INITIAL);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="corp min-h-screen bg-background text-foreground">
       <ThemeProvider>
         <Navigation />
       </ThemeProvider>
@@ -57,8 +57,8 @@ const CSR = () => {
         <section className="px-4 py-20 sm:px-6 lg:px-8">
           <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
             <div data-aos="fade-right">
-              <span className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-brand-red">
-                <span className="h-px w-8 bg-brand-red" /> Our mission
+              <span className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-gold-deep">
+                <span className="h-px w-8 bg-gold" /> Our mission
               </span>
               <h2 className="mt-3 text-3xl font-bold leading-tight md:text-4xl">Living out our faith through action.</h2>
               <p className="mt-5 leading-relaxed text-muted-foreground">
@@ -70,28 +70,28 @@ const CSR = () => {
                 src="/CSR PAGE/nyumba ya tumaini 1.jpg"
                 alt="K-GROUP KENYA team with children during an outreach visit"
                 loading="lazy"
-                className="h-80 w-full rounded-3xl object-cover"
+                className="h-80 w-full  object-cover"
               />
               <img
                 src="/COMPANY LOGOS/K-GROUP KENYA CSR - WHITE BG.jpg"
                 alt="K-GROUP KENYA CSR logo"
-                className="absolute -bottom-6 -left-2 h-24 w-24 rounded-2xl border-4 border-brand-red bg-white object-contain p-1 shadow-xl sm:left-6"
+                className="absolute -bottom-6 -left-2 h-24 w-24  border-4 border-gold bg-white object-contain p-1 shadow-xl sm:left-6"
               />
             </div>
           </div>
         </section>
 
         {/* Focus areas */}
-        <section className="bg-brand-black px-4 py-20 text-white sm:px-6 lg:px-8">
+        <section className="bg-navy px-4 py-20 text-white sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
-            <span className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-brand-red">
-              <span className="h-px w-8 bg-brand-red" /> What we do
+            <span className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-gold-deep">
+              <span className="h-px w-8 bg-gold" /> What we do
             </span>
             <h2 className="mt-3 text-3xl font-bold md:text-4xl">Where we focus</h2>
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {focusAreas.map((f, i) => (
-                <div key={f.title} className="rounded-2xl border border-white/10 bg-white/5 p-6" data-aos="fade-up" data-aos-delay={i * 80}>
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-red">
+                <div key={f.title} className=" border border-white/10 bg-white/5 p-6" data-aos="fade-up" data-aos-delay={i * 80}>
+                  <span className="flex h-12 w-12 items-center justify-center bg-gold text-navy">
                     <f.icon className="h-6 w-6" aria-hidden="true" />
                   </span>
                   <h3 className="mt-4 text-lg font-bold">{f.title}</h3>
@@ -107,8 +107,8 @@ const CSR = () => {
           <div className="mx-auto max-w-7xl">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <div>
-                <span className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-brand-red">
-                  <span className="h-px w-8 bg-brand-red" /> In pictures
+                <span className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-gold-deep">
+                  <span className="h-px w-8 bg-gold" /> In pictures
                 </span>
                 <h2 className="mt-3 text-3xl font-bold md:text-4xl">Moments from our outreach</h2>
               </div>
@@ -119,10 +119,10 @@ const CSR = () => {
                     type="button"
                     onClick={() => { setProject(p); setShowAll(false); }}
                     aria-pressed={project === p}
-                    className={`rounded-full border-2 px-4 py-1.5 text-sm font-semibold transition-colors ${
+                    className={`border-2 px-4 py-1.5 text-sm font-semibold transition-colors ${
                       project === p
                         ? "border-foreground bg-foreground text-background"
-                        : "border-border hover:border-brand-red hover:text-brand-red"
+                        : "border-border hover:border-gold hover:text-gold-deep"
                     }`}
                   >
                     {p}
@@ -137,7 +137,7 @@ const CSR = () => {
                   key={p.src}
                   type="button"
                   onClick={() => setOpen(p.src)}
-                  className="group mb-4 block w-full overflow-hidden rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-red"
+                  className="group mb-4 block w-full overflow-hidden  focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-red"
                   aria-label={`Open photo from ${p.project}`}
                 >
                   <img
@@ -155,7 +155,7 @@ const CSR = () => {
                 <button
                   type="button"
                   onClick={() => setShowAll(true)}
-                  className="rounded-lg border-2 border-foreground px-6 py-2.5 font-bold transition-colors hover:bg-foreground hover:text-background"
+                  className="border-2 border-foreground px-6 py-2.5 font-bold transition-colors hover:bg-foreground hover:text-background"
                 >
                   Show all {filtered.length} photos
                 </button>
@@ -165,13 +165,13 @@ const CSR = () => {
         </section>
 
         {/* CTA */}
-        <section className="bg-brand-red px-4 py-16 text-center text-white sm:px-6 lg:px-8">
+        <section className="bg-navy px-4 py-16 text-center text-white sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold md:text-4xl">Partner with us</h2>
-          <p className="mx-auto mt-3 max-w-xl text-white/90">
+          <p className="mx-auto mt-3 max-w-xl text-white/75">
             Want to give, volunteer or join an outreach? Get in touch and we'll show you how to be part of it.
           </p>
-          <Link to="/contacts" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-bold text-brand-black transition-colors hover:bg-brand-black hover:text-white">
-            Contact us <ArrowUpRight className="h-4 w-4" />
+          <Link to="/contacts" className="corp-btn corp-btn-gold mt-6">
+            Contact us
           </Link>
         </section>
       </main>
@@ -179,7 +179,7 @@ const CSR = () => {
       <Dialog open={open !== null} onOpenChange={(o) => !o && setOpen(null)}>
         <DialogContent className="max-w-4xl border-0 bg-transparent p-0 shadow-none">
           <DialogTitle className="sr-only">Outreach photo</DialogTitle>
-          {open && <img src={open} alt="Outreach photo, enlarged" className="max-h-[85vh] w-full rounded-2xl object-contain" />}
+          {open && <img src={open} alt="Outreach photo, enlarged" className="max-h-[85vh] w-full  object-contain" />}
         </DialogContent>
       </Dialog>
 
