@@ -70,17 +70,21 @@ export interface Brand {
   tagline?: string;
   /** Page on this site. Brands without one show "Profile coming soon". */
   link?: string;
+  /** Logo image. Brands without one show their name as a wordmark. */
+  logo?: string;
+  /** Set when the logo is white on transparent and needs a dark tile. */
+  darkLogo?: boolean;
 }
 
 export const portfolio: Brand[] = [
-  { name: "KachSound Media", category: "Media, entertainment and event production", link: "/kach-sound-media" },
-  { name: "KBR Radio", category: "Radio and gospel-oriented media", tagline: "Taking the Gospel to the World.", link: "/kbr-radio" },
-  { name: "KBR TV", category: "Television and digital media", tagline: "Taking the Gospel to the World.", link: "/kbr-tv" },
-  { name: "Breakout Events", category: "Events and experiences", link: "/breakout-events" },
-  { name: "KBR DJ Academy", category: "DJ education and skills development", tagline: "Where Passion Meets the Beat.", link: "/kbr-academy" },
-  { name: "Links Auto Motors", category: "Automotive", link: "/links-auto-motors" },
+  { name: "KachSound Media", logo: "/COMPANY LOGOS/KACHSOUNDMEDIA.jpg", category: "Media, entertainment and event production", link: "/kach-sound-media" },
+  { name: "KBR Radio", logo: "/COMPANY LOGOS/KBRRADIO.jpg", category: "Radio and gospel-oriented media", tagline: "Taking the Gospel to the World.", link: "/kbr-radio" },
+  { name: "KBR TV", logo: "/COMPANY LOGOS/KBRTV - WHITE.jpg", category: "Television and digital media", tagline: "Taking the Gospel to the World.", link: "/kbr-tv" },
+  { name: "Breakout Events", logo: "/COMPANY LOGOS/BREAKOUTEVENTS.jpg", category: "Events and experiences", link: "/breakout-events" },
+  { name: "KBR DJ Academy", logo: "/COMPANY LOGOS/KBRACADEMY.jpg", category: "DJ education and skills development", tagline: "Where Passion Meets the Beat.", link: "/kbr-academy" },
+  { name: "Links Auto Motors", logo: "/COMPANY LOGOS/LINKSAUTOMOTORS.jpg", category: "Automotive", link: "/links-auto-motors" },
   { name: "COVNT.", category: "Purpose-led apparel and lifestyle", tagline: "Wear Your Purpose.", link: "/covnt" },
-  { name: "DJ KACH Ministries", category: "Christian ministry and gospel engagement", tagline: "The Gospel Sound Ambassador.", link: "/dj-kach-ministries" },
+  { name: "DJ KACH Ministries", logo: "/dj-kach/logo-white.png", darkLogo: true, category: "Christian ministry and gospel engagement", tagline: "The Gospel Sound Ambassador.", link: "/dj-kach-ministries" },
 ];
 
 export const links = [

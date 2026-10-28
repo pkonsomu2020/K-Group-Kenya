@@ -208,3 +208,36 @@ All colors MUST be HSL.
 .corp-btn-navy:hover { background: #13294B; }
 .corp-btn-sm { padding: 0.6rem 1.4rem; font-size: 0.9rem; }
 .corp-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+/* Links Auto Motors page: black, white and K-GROUP red */
+.lam {
+  --lam-red: #ed1c24;
+  --lam-red-dark: #b90f16;
+  --lam-ink: #111317;
+  --lam-dark: #0a0c10;
+  --lam-panel: #151920;
+  --lam-line: #252a32;
+  --lam-muted: #6c7178;
+  font-family: "Inter", system-ui, sans-serif;
+  background: #fff;
+  color: var(--lam-ink);
+  color-scheme: light;
+}
+.lam h1, .lam h2, .lam h3, .lam .font-heading { font-family: "Montserrat", "Inter", sans-serif; }
+@keyframes lam-drive-in { from { transform: translateX(-70vw); } to { transform: translateX(0); } }
+@keyframes lam-idle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.5px); } }
+@keyframes lam-shake { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(-1px, 1px); } 75% { transform: translate(1px, -1px); } }
+@keyframes lam-wheel { to { transform: rotate(360deg); } }
+@keyframes lam-road { to { transform: translateX(-120px); } }
+@keyframes lam-beam { 0%, 100% { opacity: .55; } 50% { opacity: .8; } }
+@keyframes lam-pulse { 0% { box-shadow: 0 0 0 0 rgba(237,28,36,.5); } 100% { box-shadow: 0 0 0 18px rgba(237,28,36,0); } }
+.lam-drive { animation: lam-drive-in 2.2s cubic-bezier(.16,.84,.3,1) both; }
+.lam-body { animation: lam-idle .9s ease-in-out infinite; }
+.lam-body.lam-on { animation: lam-shake .09s linear infinite; }
+.lam-wheel { transform-box: fill-box; transform-origin: center; animation: lam-wheel var(--wheel, 1.6s) linear infinite; }
+.lam-roadline { animation: lam-road var(--road, 2s) linear infinite; }
+.lam-beam { animation: lam-beam 2.4s ease-in-out infinite; }
+.lam-pulse { animation: lam-pulse 1.6s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .lam-drive, .lam-body, .lam-wheel, .lam-roadline, .lam-beam, .lam-pulse { animation: none; }
+}

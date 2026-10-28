@@ -93,7 +93,18 @@ const Home = () => {
             {portfolio.map((b, i) => {
               const inner = (
                 <>
-                  <span className="font-heading text-xs font-bold tracking-[0.3em] text-gold-deep">{String(i + 1).padStart(2, "0")}</span>
+                  <div className="flex items-start justify-between">
+                    <span
+                      className={`flex h-20 w-20 items-center justify-center overflow-hidden rounded-full border border-border shadow-sm ${b.darkLogo ? "bg-black p-1" : "bg-white"}`}
+                    >
+                      {b.logo ? (
+                        <img src={b.logo} alt={`${b.name} logo`} loading="lazy" decoding="async" className="h-full w-full object-contain" />
+                      ) : (
+                        <span className="px-1 text-center font-heading text-[13px] font-extrabold leading-tight text-navy">{b.name}</span>
+                      )}
+                    </span>
+                    <span className="font-heading text-xs font-bold tracking-[0.3em] text-gold-deep">{String(i + 1).padStart(2, "0")}</span>
+                  </div>
                   <h3 className="mt-6 font-heading text-xl font-bold text-navy">{b.name}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{b.category}</p>
                   {b.tagline && <p className="mt-4 text-sm italic text-navy/70">&ldquo;{b.tagline}&rdquo;</p>}
